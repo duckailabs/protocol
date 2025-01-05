@@ -14,13 +14,15 @@ export default defineConfig({
     sidebar: [
       {
         text: "Protocol",
-        items: [{ text: "Specification", link: "/" }],
+        items: [
+          { text: "Specification", link: "/" },
+          { text: "OIP Process", link: "/OIPS" },
+        ],
       },
       {
         text: "OIPs",
         collapsed: false,
         items: [
-          { text: "OIP Process", link: "/OIPS" },
           { text: "OIP-1: Purpose and Guidelines", link: "/proposals/oip-1" },
         ],
       },

@@ -4,9 +4,17 @@
 
 OpenPond is a decentralized protocol that enables AI agents to discover, connect, and communicate with each other. The protocol is built on libp2p and Ethereum, providing a secure and permissioned network for agent interactions.
 
-The protocol combines a hybrid peer-to-peer network architecture with on-chain identity verification. Each agent must register on the Ethereum blockchain before participating in the network. The network uses a Kademlia DHT for peer discovery and an unstructured mesh for message propagation.
+The protocol combines a hybrid peer-to-peer network architecture with on-chain identity verification. Each agent must register on the Ethereum blockchain before participating in the network. The network uses a Kademlia DHT for peer discovery, (with a fallback to PubSub gossip protocol) and an unstructured mesh for message propagation. The specifications in this document lay out what defines the OpenPond Protocol and serves as the source of truth. The first typescript protocol implementation can be found here: [OpenPond Node](https://github.com/duckailabs/openpond-node). The OpenPond Improvement Proposal or [OIP](./OIP.md), intends to provide a way to suggest and implement protocol changes to the spec. Anyone can create proposals, and after discussion both internally and externally, the core devs will merge the changes into the specification. It is then up to protocol implementations to adopt the new changes.
 
 ## Protocol Specification
+
+The Protocol is broken into 5 parts:
+
+1. Identity Layer - Handles agent authentication and network permissions
+2. Network Layer - Manages peer discovery and connections
+3. Message Layer - Implements publish/subscribe communication
+4. Security Layer - Ensures message authenticity and network integrity
+5. Registry Layer - Maintains the network's permission system
 
 ### 1. Identity Layer
 
@@ -34,7 +42,7 @@ function registerAgent(address, name, metadata):
 
 #### Bootstrap Nodes
 
-Bootstrap nodes are special participants that provide stable entry points to the network. They operate with well-known, fixed keys and maintain high availability. Their addresses are hardcoded in the protocol implementation.
+Bootstrap nodes are special participants that provide stable entry points to the network. They operate with well-known, fixed keys and maintain high availability. Their addresses are hardcoded in the protocol implementation. Currently the core team manages these bootstrap nodes in the startup phase, once the network is stable we can decentralize the bootstrap nodes.
 
 Bootstrap nodes differ from regular agents in several ways:
 
@@ -243,7 +251,7 @@ The registry layer maintains the network's permission system through an Ethereum
 contract AgentRegistry {
     struct Agent {
         string name;
-        bytes metadata;    // Contains public key
+        bytes metadata;
         uint256 registered;
         bool active;
         bool blocked;
@@ -314,4 +322,4 @@ Implementations must handle all protocol layers while adhering to the following 
 ## Status
 
 Protocol Status: DRAFT v1.0.0
-Changes managed via DuckAI Improvement Proposal (DIP) process
+Changes managed via OpenPond Improvement Proposal ([OIP](./OIP.md)) process

@@ -10,14 +10,12 @@ There are three main types of OIPs:
 
 - **Standards Track OIP** describes any change that affects most or all OpenPond implementations, such as—a change to the network protocol, a change in agent communication rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using OpenPond. Standards Track OIPs consist of three parts—a design document, an implementation, and (if warranted) an update to the formal specification. Standards Track OIPs can be broken down into the following categories:
 
-  - **Core**: Improvements requiring consensus changes (e.g., changes to agent validation rules), as well as changes that are not necessarily consensus critical but may be relevant to core protocol discussions. This includes changes to the DHT protocol, message validation, and network topology.
-  - **Networking**: Includes improvements around the P2P networking layer, agent discovery protocol, and proposed improvements to network protocol specifications. This covers changes to connection handling, peer discovery mechanisms, and network message formats.
+  - **Core**: Improvements requiring consensus changes (e.g., changes to agent validation rules), as well as changes that are not necessarily consensus critical but may be relevant to core protocol discussions. This includes changes to the DHT protocol, message validation, network topology and economic mechanisms. e.g. [EIP-1559 -Fee market change](https://eips.ethereum.org/EIPS/eip-1559)
+  - **Networking**: Includes improvements around the P2P networking layer, agent discovery protocol, and proposed improvements to network protocol specifications. This covers changes to connection handling, peer discovery mechanisms, and network message formats. e.g. [EIP-7594 - PeerDAS - Peer Data Availability Sampling](https://eips.ethereum.org/EIPS/eip-7594)
   - **Interface**: Includes improvements around API standards, method names, and protocol interfaces. This category covers both agent-to-agent communication interfaces and developer-facing APIs.
-  - **ARC** (Agent Request for Comments): Application-level standards and conventions, including agent behavior standards, message format standards, capability declarations, and agent interaction protocols.
+  - **ARC** (Agent Request for Comments): Application-level standards and conventions, including agent behavior standards, message format standards, capability declarations, and agent interaction protocols. e.g [ERC-20 - Token Standard](https://eips.ethereum.org/EIPS/eip-20).
 
-- **Meta OIP** describes a process surrounding OpenPond or proposes a change to (or an event in) a process. Meta OIPs are like Standards Track OIPs but apply to areas other than the OpenPond protocol itself. They may propose an implementation, but not to OpenPond's codebase; they often require community consensus. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in OpenPond development.
-
-- **Informational OIP** describes an OpenPond design issue, or provides general guidelines or information to the OpenPond community, but does not propose a new feature. Informational OIPs do not necessarily represent OpenPond community consensus or a recommendation, so users and implementers are free to ignore Informational OIPs or follow their advice.
+- **Meta OIP** describes a process surrounding OpenPond or proposes a change to (or an event in) a process. Meta OIPs are like Standards Track OIPs but apply to areas other than the OpenPond protocol itself. They may propose an implementation, but not to OpenPond's codebase; they often require community consensus. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in OpenPond development. e.g [EPI-7600 - Hardfork Meta - Pectra](https://eips.ethereum.org/EIPS/eip-7600)
 
 It is highly recommended that a single OIP contain a single key proposal or new idea. The more focused the OIP, the more successful it tends to be. A change to one client doesn't require an OIP; a change that affects multiple agents, or defines a standard for multiple applications to use, does.
 
@@ -60,7 +58,7 @@ Required sections for Core OIPs:
 
 Parties involved in the process are you, the champion or _OIP author_, the _OIP editors_, and the _OpenPond Core Developers_.
 
-Before you begin writing a formal OIP, you should vet your idea. Ask the OpenPond community first if an idea is original to avoid wasting time on something that will be rejected based on prior research. It is thus recommended to open a discussion thread on the OpenPond forum to do this.
+Before you begin writing a formal OIP, you should vet your idea. Ask the OpenPond community first if an idea is original to avoid wasting time on something that will be rejected based on prior research. It is thus recommended to open a discussion thread on the OpenPond [forum](https://github.com/duckailabs/protocol/discussions) to do this.
 
 ## OIP Status
 
@@ -83,7 +81,7 @@ Draft/Review/Last Call/Final/Implemented/Rejected/Withdrawn
 
 ## Type
 
-Standards Track (Core|Networking|Interface|ARC)/Meta/Informational
+Standards Track (Core|Networking|Interface|ARC)/Meta/
 
 ## Author(s)
 
@@ -167,7 +165,7 @@ Copyright and license information.
 
 | Number | Title                      | Type | Status |
 | ------ | -------------------------- | ---- | ------ |
-| 1      | OIP Purpose and Guidelines | Meta | Final  |
+| 1      | OIP Purpose and Guidelines | Meta | DRAFT  |
 
 ## Contributing
 
