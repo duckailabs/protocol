@@ -11,7 +11,7 @@ There are several ways to contribute to the OpenPond protocol:
 1. **Submit an OIP (OpenPond Improvement Proposal)**
 
    - For significant changes or new features
-   - Follow the OIP process outlined in [OIPS.md](./OIPS.md)
+   - Follow the OIP process outlined in [OIP.md](./OIP.md)
    - Start with community discussion before formal submission
 
 2. **Direct Contributions**
@@ -47,7 +47,7 @@ The complete protocol specification is available in [index.md](./index.md). It c
 
 ## OpenPond Improvement Proposals (OIPs)
 
-OIPs are the primary mechanism for proposing protocol changes. See [OIPS.md](./OIPS.md) for:
+OIPs are the primary mechanism for proposing protocol changes. See [OIP.md](./OIP.md) for:
 
 - Full OIP process
 - Proposal template
