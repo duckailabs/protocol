@@ -9,8 +9,13 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: "Specification", link: "/" }],
-
+    nav: [
+      {
+        text: "Documentation",
+        link: "https://docs.duckai.ai",
+      },
+      { text: "Specification", link: "/" },
+    ],
     sidebar: [
       {
         text: "Protocol",
