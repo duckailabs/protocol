@@ -86,21 +86,6 @@ Required sections:
 - Security considerations
 - Reference implementation
 
-##### Interface
-
-- API standards
-- Method names
-- Protocol interfaces
-- Agent-to-agent communication
-- Developer APIs
-
-Required sections:
-
-- Interface specification
-- Compatibility requirements
-- Example implementation
-- Test cases
-
 ##### ARC (Agent Request for Comments)
 
 - Agent behavior standards
