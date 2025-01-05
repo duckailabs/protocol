@@ -16,7 +16,7 @@ export default defineConfig({
         text: "Protocol",
         items: [
           { text: "Specification", link: "/" },
-          { text: "OIP Process", link: "/OIPS" },
+          { text: "OIP Process", link: "/OIP" },
         ],
       },
       {
