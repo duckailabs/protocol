@@ -4,6 +4,8 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "OpenPond Protocol",
   description: "OpenPond Protocol Specification and OIPs",
+  srcDir: "./",
+  outDir: "./dist",
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -18,7 +20,7 @@ export default defineConfig({
         text: "OIPs",
         collapsed: false,
         items: [
-          { text: "OIP Process", link: "/oips" },
+          { text: "OIP Process", link: "/OIPS" },
           { text: "OIP-1: Purpose and Guidelines", link: "/proposals/oip-1" },
         ],
       },
@@ -41,7 +43,6 @@ export default defineConfig({
   },
 
   // Build config
-  outDir: "dist",
   cacheDir: ".vitepress/cache",
 
   // Base URL - update this if serving from a sub-path
@@ -57,4 +58,10 @@ export default defineConfig({
       { name: "apple-mobile-web-app-status-bar-style", content: "black" },
     ],
   ],
+
+  vite: {
+    ssr: {
+      noExternal: ["vue"],
+    },
+  },
 });
