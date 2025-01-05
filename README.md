@@ -37,7 +37,7 @@ For all contributions:
 
 ## Protocol Specification
 
-The complete protocol specification is available in [spec.md](./spec.md). It covers:
+The complete protocol specification is available in [index.md](./index.md). It covers:
 
 - Identity Layer - Agent authentication and network permissions
 - Network Layer - Peer discovery and connection management
@@ -69,7 +69,3 @@ OIPs are the primary mechanism for proposing protocol changes. See [OIPS.md](./O
 4. Start local development environment
 
 See individual component READMEs for specific setup instructions.
-
-## License
-
-This protocol is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
