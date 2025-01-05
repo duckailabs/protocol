@@ -1,0 +1,7 @@
+{
+  "buildCommand": "pnpm run build",
+  "outputDirectory": ".vercel/output/static",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm install",
+  "framework": "vitepress"
+}

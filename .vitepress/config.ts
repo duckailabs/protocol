@@ -5,7 +5,7 @@ export default defineConfig({
   title: "OpenPond Protocol",
   description: "OpenPond Protocol Specification and OIPs",
   srcDir: "./",
-  outDir: "./dist",
+  outDir: ".vitepress/dist",
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
