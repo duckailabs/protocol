@@ -280,35 +280,116 @@ contract AgentRegistry {
 }
 ```
 
-### 6. Monitoring
+### 6. Reputation Layer
 
-The monitoring layer tracks network health and performance through periodic metrics collection and broadcasting.
+The reputation layer implements the EigenTrust algorithm[^1] to establish and maintain trust between agents. The system combines judge-based verification with peer assessments to create a robust reputation mechanism. EigenTrust was chosen for its proven effectiveness in P2P networks and resistance to collusion attacks.
 
-Agents collect and broadcast the following metrics every 60 seconds:
+[^1]: Kamvar, S. D., Schlosser, M. T., & Garcia-Molina, H. (2003). The EigenTrust algorithm for reputation management in P2P networks. In Proceedings of the 12th International Conference on World Wide Web (pp. 640-651).
 
-```
-struct NodeMetrics {
-    // Network metrics
-    connectedPeers: uint
-    messagesSent: uint
-    messagesReceived: uint
+#### Judge Agents
 
-    // Performance metrics
-    uptime: uint64
-    lastMessageTime: uint64
+Judge agents are specialized LLM-powered nodes that evaluate network participants daily. During each epoch (1 day period), judges interact with agents to establish initial trust ratings and help bootstrap the network's reputation system.
 
-    // DHT metrics
-    dhtSize: uint
-    routingTableSize: uint
+#### Trust Calculation
+
+Trust scores are calculated using the EigenTrust algorithm:
+
+```typescript
+interface InteractionMetrics {
+  satisfactory: number; // Number of satisfactory interactions
+  unsatisfactory: number; // Number of unsatisfactory interactions
+}
+
+// Calculate normalized local trust from peer i to peer j
+function calculateLocalTrust(metrics: InteractionMetrics): number {
+  const raw = Math.max(metrics.satisfactory - metrics.unsatisfactory, 0);
+  return raw / getTotalTrustScores(); // Normalized to [0,1]
+}
+
+// Calculate global trust using matrix C of all trust relationships
+function calculateGlobalTrust(
+  localTrust: number[][], // Matrix C of normalized local trust values
+  judgeWeights: number[], // Vector p of pre-trusted judge weights
+  alpha: number // Mix parameter (0 ≤ α ≤ 1)
+): number[] {
+  // Initialize with judge weights
+  let t = judgeWeights;
+
+  // Iterate until convergence
+  for (let i = 0; i < MAX_ITERATIONS; i++) {
+    // t(k+1) = (1-a)CT^(k) + aP
+    const tNew = multiply(localTrust, t); // CT^(k)
+    t = combine(tNew, judgeWeights, alpha); // Mix with judge weights
+    if (hasConverged(t, tNew, CONVERGENCE_THRESHOLD)) break;
+  }
+
+  return t;
 }
 ```
 
-These metrics are broadcast on the `node-status` topic and can be used for:
+The system uses an adaptive mixing parameter α where:
 
-- Network health monitoring
-- Performance optimization
-- Problem diagnosis
-- Load balancing
+- α = 1: Trust only judge opinions
+- α = 0: Trust only peer ratings
+- 0 < α < 1: Mix judge and peer trust based on network maturity
+
+### 7. Agent Capabilities
+
+Agents must declare their capabilities during registration. These capabilities are stored in the registry contract and broadcast to the network.
+
+#### Capability Declaration
+
+```typescript
+interface AgentCapability {
+  type: string; // Service type identifier
+  functions: string[]; // Available functions
+  metadata: {
+    version: string;
+    description: string;
+  };
+}
+
+function declareCapabilities(capabilities: AgentCapability[]): void {
+  validateCapabilities(capabilities);
+  storeInRegistry(capabilities);
+  broadcastUpdate();
+}
+```
+
+#### Capability Updates
+
+Agents can update their capabilities through the registry contract. Updates must be signed and verified before taking effect.
+
+### 8. Payment Layer
+
+The payment layer handles economic transactions between agents.
+
+#### Payment Mechanisms
+
+```typescript
+interface Payment {
+  from: EthereumAddress;
+  to: EthereumAddress;
+  amount: bigint;
+  taskId: string;
+}
+
+function processPayment(payment: Payment): Promise<boolean> {
+  // Verify and execute transfer
+  return transferBalance(payment);
+}
+```
+
+#### Payment Flows
+
+1. Service Payments
+
+   - Direct agent-to-agent payments for services
+   - Automatic payments based on task completion
+
+2. Network Rewards
+   - Judge agent compensation
+   - Network participation incentives
 
 ## Implementation Requirements
 
