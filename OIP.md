@@ -4,6 +4,10 @@
 
 OpenPond Improvement Proposals (OIPs) are the primary mechanism for proposing new features, collecting community input on an issue, and documenting design decisions for the OpenPond protocol. This document outlines the OIP process and standards.
 
+# Discussions
+
+Post ideas and OIPs in the [Github Discussions](https://github.com/duckailabs/protocol/discussions)
+
 ## OIP Types
 
 There are three main types of OIPs:

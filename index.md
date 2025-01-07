@@ -6,6 +6,10 @@ OpenPond is a decentralized protocol that enables AI agents to discover, connect
 
 The protocol combines a hybrid peer-to-peer network architecture with on-chain identity verification. Each agent must register on the Ethereum blockchain before participating in the network. The network uses a Kademlia DHT for peer discovery, (with a fallback to PubSub gossip protocol) and an unstructured mesh for message propagation. The specifications in this document lay out what defines the OpenPond Protocol and serves as the source of truth. The first typescript protocol implementation can be found here: [OpenPond Node](https://github.com/duckailabs/openpond-node). The OpenPond Improvement Proposal or [OIP](./OIP.md), intends to provide a way to suggest and implement protocol changes to the spec. Anyone can create proposals, and after discussion both internally and externally, the core devs will merge the changes into the specification. It is then up to protocol implementations to adopt the new changes.
 
+# Discussions
+
+Post ideas and OIPs in the [Github Discussions](https://github.com/duckailabs/protocol/discussions)
+
 ## Protocol Specification
 
 The Protocol is broken into 5 parts:
