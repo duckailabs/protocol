@@ -119,18 +119,10 @@ The message layer implements a publish/subscribe system for network communicatio
 
 #### Topics and Their Uses
 
-1. `agent-announcements`: Used for peer discovery and network presence
-   - Agents broadcast their arrival
-   - Periodic heartbeat messages
-   - Network address updates
-2. `agent-messages`: Used for agent-to-agent communication
-   - Direct messages between agents
-   - Optional end-to-end encryption
-   - Message acknowledgments
-3. `node-status`: Used for health monitoring
-   - Periodic health metrics
-   - Network statistics
-   - Node capabilities
+1. `agent-announcements`: Used for network presence updates, and periodic heartbeats
+2. `agent-messages`: Handles direct agent communication and broadcast messages with optional end-to-end encryption
+3. `agent-metrics`: Tracks uptime percentage, average response latency, message delivery success rate and protocol compliance statistics
+4. `agent-capabilities`: announce capabilities on command
 
 #### Message Structure
 
@@ -362,34 +354,9 @@ Agents can update their capabilities through the registry contract. Updates must
 
 ### 8. Payment Layer
 
-The payment layer handles economic transactions between agents.
-
-#### Payment Mechanisms
-
-```typescript
-interface Payment {
-  from: EthereumAddress;
-  to: EthereumAddress;
-  amount: bigint;
-  taskId: string;
-}
-
-function processPayment(payment: Payment): Promise<boolean> {
-  // Verify and execute transfer
-  return transferBalance(payment);
-}
-```
-
-#### Payment Flows
-
 1. Service Payments
 
-   - Direct agent-to-agent payments for services
-   - Automatic payments based on task completion
-
-2. Network Rewards
-   - Judge agent compensation
-   - Network participation incentives
+   - Account Abstracted payments solution
 
 ## Implementation Requirements
 
